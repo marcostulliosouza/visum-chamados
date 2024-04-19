@@ -28,7 +28,7 @@
 	}
 ?>
 
-<html lang="pt_br">
+<html lang="pt-br">
 <head>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="jqueryUI/jquery-ui.min.css">
@@ -79,6 +79,14 @@
 							</select>
 						</div>
 					</div>
+					<!-- adicionado campo do local do chamado -->
+					<div class="callsystem_form_fields">
+						<div class="div_label">Local: </div>
+						<div class="div_form_field">
+							<input type="hidden" id="product_id" name="product_id">
+							<input name="product_field" id="product_field">
+						</div>
+					</div>
 					<div class="callsystem_form_fields">
 						<div class="div_label">Cliente: </div>
 						<div class="div_form_field">
@@ -96,9 +104,10 @@
 					<div class="callsystem_form_fields">
 						<div class="div_label">Dispositivo de Teste: </div>
 						<div class="div_form_field">
-							<strong>DT</strong><input name="dt_field_1" id="dt_field_1" placeholder="XXXX" maxlength="4" required><strong>_</strong><input name="dt_field_2" id="dt_field_2" placeholder="X"  maxlength="1">
+							<strong>DT</strong><input name="dt_field_1" id="dt_field_1" placeholder="XXXX" maxlength="4" required><strong> - </strong><input name="dt_field_2" id="dt_field_2" placeholder="X"  maxlength="1" required><span style="color: red;">*</span>
 						</div>
 					</div>
+					
 					<div class="callsystem_form_fields">
 						<div class="div_label" id="description_label" name="description_label">Breve descrição sobre o Chamado: </div>
 						<div class="div_form_field" style="width: 100%">
