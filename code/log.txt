@@ -1,0 +1,28 @@
+
+		INSERT INTO chamados
+		(
+			cha_tipo,
+			cha_cliente,
+			cha_produto,
+			cha_DT,
+			cha_descricao,
+			cha_status,
+			cha_data_hora_abertura,
+			cha_operador,
+			cha_plano
+		)
+		VALUES
+		(
+			3,
+			'323',
+			'12731',
+			'_1',
+			UPPER('BOM DIA!
+JIGA ESTÁ DESLIGADA, SEM POSSIBILIDADE DE GRAVAR OS CI'S'),
+			1,
+			NOW(),
+			'ariel.luza',
+			'0'
+		)
+	
+
