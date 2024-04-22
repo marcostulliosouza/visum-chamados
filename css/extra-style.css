@@ -1,83 +1,76 @@
-.login_fields {
-	width:			100%;			
-	display: 		inline-block;
-	margin:			0 auto;	
-	
-	padding-top:	14px;
-	padding-bottom:	10px;
-	
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(0, 63, 212);
+
 }
 
-.ui-button.loginButton {
-	font-size:		14px;
-	font-weight:	bold;
-	
+.logo-hi-mix {
+    text-align: center;
+    margin: 50px 0;
 }
 
-.ui-button.loginButton:hover {
-	background-color: #90C3D4;
-}
-
-.ui-button.loginButton:focus {
-	border-color:	#185A70;	
+.logo-hi-mix p {
+    font-size: 18px;
+    color: #fff;
+    gap: 10px;
 }
 
 #div_login {
-	padding: 		10px;
-	border-width: 	3px;
-	border-color: 	#000000;
-	width:			300px;
-	height:			170px;
-	position: 		absolute;
-	top: 			0;
-	bottom: 		0;
-	left:			10px;
-	right:			10px;
-	margin: 		auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 300px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#div_user {
-	padding-top:	5px;
-	font-weight:	bold;
-	font-family:	Verdana;
-	font-size:		14px;
-	color:			#185A70;
-	position: 		relative;
-	float:			left;
-	
+.login_fields {
+    margin-bottom: 15px;
 }
 
-#user_field {
-	position:		relative;
-	float:			right;
-}
-
-
+#div_user,
 #div_pass {
-	padding-top:	5px;
-	position: 		relative;
-	float:			left;
-	font-weight:	bold;
-	font-family:	Verdana;
-	font-size:		14px;
-	color:			#185A70;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
 }
 
-#pass_field {
-	position:		relative;
-	float:			right;
-}
-
-#div_btn {
-	text-align:		center;
-}
-
-#username {
-	font-family:	Verdana;
-	font-size:		14px;	
-}
-
+#username,
 #password {
-	font-family:	Verdana;
-	font-size:		14px;	
+    width: calc(100% - 10px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#btn_login {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(0, 63, 212);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#btn_login:hover {
+    background-color: rgb(148, 167, 212);
+}
+
+.ui-widget {
+    margin-top: 10px;
+}
+
+.ui-state-error {
+    padding: 10px;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    border-radius: 5px;
+    color: #a94442;
 }
