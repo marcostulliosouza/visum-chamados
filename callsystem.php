@@ -58,7 +58,7 @@
 </head>
 <body>
 	<div id="body_wrapper" name="body_wrapper">
-		<div id="welcome_title" class="ui-corner-all"><strong>Bem Vindo <?=$_COOKIE['user']?></strong></div>
+		<div id="welcome_title" class="ui-corner-all"><strong>Sistema de Chamadas Engenharia de Testes</strong><br><br>Bem Vindo, @<?=$_COOKIE['user']?></div>
 		<div id="tabs">
 			<ul id="nav_ul">
 				<li><a href="#novo_chamado"><span class="ui-icon ui-icon-plusthick"></span><strong>&nbsp;&nbsp;&nbsp;Novo Chamado</strong></a></li>
@@ -79,14 +79,14 @@
 							</select>
 						</div>
 					</div>
-					<!-- adicionado campo do local do chamado
+					<!-- adicionado campo do local do chamado -->
 					<div class="callsystem_form_fields">
 						<div class="div_label">Local: </div>
 						<div class="div_form_field">
 							<input type="hidden" id="product_id" name="product_id">
 							<input name="product_field" id="product_field">
 						</div>
-					</div> -->
+					</div>
 					<div class="callsystem_form_fields">
 						<div class="div_label">Cliente: </div>
 						<div class="div_form_field">
