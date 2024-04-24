@@ -36,18 +36,19 @@
 	
 	$sql = "
 		SELECT 
-			cha_id, 
-			cli_nome, 
-			pro_nome, 
-			cha_DT, 
-			cha_descricao, 
-			tch_descricao,
-			cha_status,
-			DATE_FORMAT(cha_data_hora_abertura, '%d/%m/%Y %H:%i') AS cha_abertura,  
-			DATE_FORMAT(cha_data_hora_termino, '%d/%m/%Y %H:%i') AS cha_termino,
-			cha_operador,
-			IF(col_nome IS NULL, ' ', col_nome) AS col_nome, 
-			IF(ach_descricao IS NULL, ' ', ach_descricao) AS ach_descricao
+			chamados.cha_id, 
+			clientes.cli_nome, 
+			produtos.pro_nome, 
+			chamados.cha_DT, 
+			chamados.cha_descricao, 
+			tipos_chamado.tch_descricao,
+			chamados.cha_status,
+			DATE_FORMAT(chamados.cha_data_hora_abertura, '%d/%m/%Y %H:%i') AS cha_abertura,  
+			DATE_FORMAT(chamados.cha_data_hora_termino, '%d/%m/%Y %H:%i') AS cha_termino,
+			chamados.cha_operador,
+			IF(colaboradores.col_nome IS NULL, ' ', colaboradores.col_nome) AS col_nome, 
+			IF(acoes_chamados.ach_descricao IS NULL, ' ', acoes_chamados.ach_descricao) AS ach_descricao,
+			local_chamado.loc_nome AS cha_local_nome
 		FROM 
 			chamados 
 			LEFT JOIN tipos_chamado ON chamados.cha_tipo = tipos_chamado.tch_id 
@@ -56,15 +57,16 @@
 			LEFT JOIN atendimentos_chamados ON chamados.cha_id = atendimentos_chamados.atc_chamado
 			LEFT JOIN colaboradores ON atendimentos_chamados.atc_colaborador = colaboradores.col_id
 			LEFT JOIN acoes_chamados ON chamados.cha_acao = acoes_chamados.ach_id
+			LEFT JOIN local_chamado ON chamados.cha_local = local_chamado.loc_id
 		WHERE 
 			1 = 1
-			AND cha_descricao NOT LIKE 'Chamado criado automaticamente%'
+			AND chamados.cha_descricao NOT LIKE 'Chamado criado automaticamente%'
 			".$filter."
 		GROUP BY
-			cha_id
-		ORDER BY 	
-			cha_data_hora_abertura DESC,
-			atc_data_hora_termino DESC
+			chamados.cha_id
+		ORDER BY     
+			chamados.cha_data_hora_abertura DESC,
+			chamados.cha_data_hora_termino DESC
 		LIMIT 
 			".(($_POST['page']-1) * CALLS_PER_PAGE).", ".CALLS_PER_PAGE."
 	";

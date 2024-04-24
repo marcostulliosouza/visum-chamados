@@ -39,10 +39,8 @@ $( document ).ready(function() {
 		change:	function(event, ui) {
 			if($(this).val() > 1){
 				$( "#dt_field_1" ).prop("disabled", false);
-				$( "#dt_field_2" ).prop("disabled", false);
 			} else {
 				$( "#dt_field_1" ).prop("disabled", true);
-				$( "#dt_field_2" ).prop("disabled", true);
 			}
 		}
 	
@@ -50,33 +48,8 @@ $( document ).ready(function() {
 	
 	//jquery to disable the input DT 
 	$( "#dt_field_1" ).prop("disabled", true);
-	$( "#dt_field_2" ).prop("disabled", true);
 	
-	//jquery for the DT field code
-	$( "#dt_field_1" ).on("keypress keyup blur", function(event){
-		$(this).val($(this).val().replace("/[^\d].+/", ""));
-		
-		if((event.which < 48) || (event.which > 57)){
-			event.preventDefault();
-		}
-		
-		var len = $(this).val().length;
-		if(len >= 4){
-			$( "#dt_field_2" ).focus();
-		}
-	});
-	
-	$( "#dt_field_2" ).on("keypress keyup blur", function(event){
-		$(this).val($(this).val().replace("/[^\d].+/", ""));
-		
-		if((event.which < 48) || (event.which > 57)){
-			event.preventDefault();
-		}
-	});
-	
-	
-	
-	
+
 	
 	//ajax call to populate de selectmenu with the call types
 	$.ajax({
@@ -384,6 +357,8 @@ $( document ).ready(function() {
 					"			<div class='my_call_cell'>"+value.cha_abertura+"</div>"														+
 					"			<div class='my_call_cell' id='label_close_call' name='label_close_call'>Fechamento:</div>"					+
 					"			<div class='my_call_cell'>"+value.cha_termino+"</div>"														+
+					"			<div class='my_call_cell' id='label_local_call' name='label_local_call'>Local:</div>"						+
+					"			<div class='my_call_cell'>"+(value.cha_local_nome ? value.cha_local_nome : 'Local não especificado')+"</div>"														+
 					"		</div>"																											+
 					"	</div>"																												+
 					"	<div class='my_call_table'>"																						+

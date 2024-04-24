@@ -2,23 +2,6 @@
 
 	include("connector.php");
 	
-	if($_POST['call_type'] > 1)
-	{
-		if($_POST['dt_field_2'])
-		{
-			$dt_code = $_POST['dt_field_1']."_".$_POST['dt_field_2'];		
-		} 
-		else
-		{
-			$dt_code = $_POST['dt_field_1']."_1";			
-		}
-	} 
-	else
-	{
-		$dt_code = "0000_0";
-	}
-	
-
 	
 	$query = "
 		SELECT 
@@ -69,15 +52,11 @@
 	
 	
 	
-	
-	
-	
-	
-	
 	$query = "
 		INSERT INTO chamados
 		(
 			cha_tipo,
+			cha_local,
 			cha_cliente,
 			cha_produto,
 			cha_DT,
@@ -90,9 +69,10 @@
 		VALUES
 		(
 			".$_POST['call_type'].",
+			".$_POST['local_id'].",
 			'".$_POST['client_id']."',
 			'".$_POST['product_id']."',
-			'".$dt_code."',
+			'".$_POST['dt_field_1']."',
 			UPPER('".utf8_decode($_POST['call_description'])."'),
 			1,
 			NOW(),
