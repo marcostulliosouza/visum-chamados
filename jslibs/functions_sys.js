@@ -91,7 +91,32 @@ $( document ).ready(function() {
 		}
 	});
 	
-
+	//jquery for the autocomplete local field
+	$( "#local_field" ).autocomplete({
+		source:		function( request, response ) {
+			var dados = "local=" + request.term;
+			$.ajax({
+				type:		"POST",
+				url:		"code/local_list.php",
+				data:		dados,
+				dataType:	"json",
+				success:	function( data ) {
+					response( data );
+				}
+			});
+		},
+		delay:		1000,
+		minLength:	2,
+		select:		function(event, ui) {
+			$( "#local_id" ).val(ui.item.id);
+			$(this).val(ui.item.value);
+		},
+		change: function(event, ui){
+			if(!ui.item)
+				$(this).val("")
+		}
+	});
+	
 	//jquery for the autocomplete client field
 	$( "#client_field" ).autocomplete({
 		source:		function( request, response ) {

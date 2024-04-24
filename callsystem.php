@@ -72,7 +72,7 @@
 				<form method="post" accept-charset="UTF-8" action="" id="call_form">
 					<input type="hidden" id="user_call" name="user_call" value=<?=$_COOKIE['user']?>>
 					<div class="callsystem_form_fields">
-						<div class="div_label">Tipo de Chamado: </div>
+						<div class="div_label">Tipo de Chamado: </div><span style="color: red;">*</span>
 						<div class="div_form_field">
 							<select name="call_type" id="call_type">
 								<option value='' selected disabled></option>
@@ -83,33 +83,34 @@
 					<div class="callsystem_form_fields">
 						<div class="div_label">Local: </div>
 						<div class="div_form_field">
-							<input type="hidden" id="product_id" name="product_id">
-							<input name="product_field" id="product_field">
+							<input type="hidden" id="local_id" name="local_id">
+							<input name="local_field" id="local_field"><span style="color: red;">*</span>
 						</div>
 					</div>
+					<!--  -->
 					<div class="callsystem_form_fields">
 						<div class="div_label">Cliente: </div>
 						<div class="div_form_field">
 							<input type="hidden" id="client_id" name="client_id">
-							<input name="client_field" id="client_field">
+							<input name="client_field" id="client_field"><span style="color: red;">*</span>
 						</div>
 					</div>
 					<div class="callsystem_form_fields">
 						<div class="div_label">Produto: </div>
 						<div class="div_form_field">
 							<input type="hidden" id="product_id" name="product_id">
-							<input name="product_field" id="product_field">
+							<input name="product_field" id="product_field"><span style="color: red;">*</span>
 						</div>
 					</div>
 					<div class="callsystem_form_fields">
 						<div class="div_label">Dispositivo de Teste: </div>
 						<div class="div_form_field">
-							<strong>DT</strong><input name="dt_field_1" id="dt_field_1" placeholder="XXXX" maxlength="4" required><strong> - </strong><input name="dt_field_2" id="dt_field_2" placeholder="X"  maxlength="1" required><span style="color: red;">*</span>
+							<strong>DT-</strong><input name="dt_field_1" id="dt_field_1" placeholder="XXXXXX" maxlength="6"><span style="color: red;">*</span>
 						</div>
 					</div>
 					
 					<div class="callsystem_form_fields">
-						<div class="div_label" id="description_label" name="description_label">Breve descrição sobre o Chamado: </div>
+						<div class="div_label" id="description_label" name="description_label">Breve descrição sobre o Chamado: <span style="color: red;">*</span></div>
 						<div class="div_form_field" style="width: 100%">
 							<textarea name="call_description" id="call_description" class="ui-corner-all ui-widget-content"></textarea>
 						</div>
