@@ -64,7 +64,8 @@
 			cha_data_hora_atendimento,
 			cha_data_hora_termino,
 			ach_descricao,
-			dtr_descricao
+			dtr_descricao,
+			local_chamado.loc_nome AS cha_local
 		FROM 
 			chamados 
 			LEFT JOIN (SELECT atc1.* FROM atendimentos_chamados atc1 JOIN (SELECT atc_chamado, MAX(atc_data_hora_inicio) atc_inicio FROM atendimentos_chamados GROUP BY atc_chamado) atc2 ON atc1.atc_chamado = atc2.atc_chamado AND atc1.atc_data_hora_inicio = atc2.atc_inicio) atc ON atc.atc_chamado = cha_id
@@ -73,6 +74,7 @@
 			LEFT JOIN colaboradores ON col_id = atc_colaborador
 			LEFT JOIN acoes_chamados ON cha_acao = ach_id
 			LEFT JOIN detratores ON ach_detrator = dtr_id
+			LEFT JOIN local_chamado ON chamados.cha_local = local_chamado.loc_id
 		WHERE 
 			1 = 1
 			".$filter."

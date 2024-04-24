@@ -94,7 +94,8 @@
 			cha_data_hora_atendimento,
 			cha_data_hora_termino,
 			ach_descricao,
-			dtr_descricao
+			dtr_descricao,
+			local_chamado.loc_nome AS cha_local
 		FROM 
 			chamados 
 			LEFT JOIN (SELECT atc1.* FROM atendimentos_chamados atc1 JOIN (SELECT atc_chamado, MAX(atc_data_hora_inicio) atc_inicio FROM atendimentos_chamados GROUP BY atc_chamado) atc2 ON atc1.atc_chamado = atc2.atc_chamado AND atc1.atc_data_hora_inicio = atc2.atc_inicio) atc ON atc.atc_chamado = cha_id
@@ -103,6 +104,7 @@
 			LEFT JOIN colaboradores ON col_id = atc_colaborador
 			LEFT JOIN acoes_chamados ON cha_acao = ach_id
 			LEFT JOIN detratores ON ach_detrator = dtr_id
+			LEFT JOIN local_chamado ON chamados.cha_local = local_chamado.loc_id
 		WHERE 
 			1 = 1
 			".$filter."
@@ -116,7 +118,7 @@
 	
 	//echo $sql."\n\n<br><br>";
 	$result = $conn->query($sql);
-	$header = array("Data de Abertura", "Atraso", "Atendimento", "Total", "Criado Por", "Cliente", "Produto", "Atendido Por", "Resposta", "Ação Realizada");
+	$header = array("Data de Abertura", "Atraso", "Atendimento", "Total", "Criado Por", "Local", "Cliente", "Produto", "Atendido Por", "Resposta", "Ação Realizada");
 	
 	if($result->num_rows > 0)
 	{
@@ -129,6 +131,7 @@
 			$excel->writeCol($row['cha_status'] > 1 ? format_time($row['duracao_atendimento']) : "");
 			$excel->writeCol(format_time($row['duracao_total']));
 			$excel->writeCol((string)$row['cha_operador']);
+			$excel->writeCol((string)$row['cha_local']); // Adiciona o campo cha_local
 			$excel->writeCol((string)$row['cli_nome']);
 			$excel->writeCol((string)$row['pro_nome']);
 			$excel->writeCol((string)$row['col_nome']);

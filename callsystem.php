@@ -164,7 +164,7 @@
 													<input id="product_value_filter" name="product_value_filter">
 												</div>
 												<div class="value_field_filter" id="jig_field_filter" name="jig_field_filter">
-												<strong>DT</strong><input name="dt_field_filter_1" id="dt_field_filter_1" placeholder="XXXX" maxlength="4">
+												<strong>DT- </strong><input name="dt_field_filter_1" id="dt_field_filter_1" placeholder="XXXXXX" maxlength="6">
 												</div>
 												<div class="value_field_filter" id="open_field_filter" name="open_field_filter">
 													<input id="opendate_field_filter" name="opendate_field_filter" readonly>
@@ -263,6 +263,7 @@
 								<td width="80">Atendimento</td>
 								<td width="80">Total</td>
 								<td width="110">Criado Por</td>
+								<td width="80">Local</td>
 								<td width="120">Cliente</td>
 								<td width="120">Produto</td>
 								<td width="120">Atendido Por</td>
