@@ -69,7 +69,7 @@
 		VALUES
 		(
 			".$_POST['call_type'].",
-			".$_POST['local_id'].",
+			'".$_POST['local_value']."',
 			'".$_POST['client_id']."',
 			'".$_POST['product_id']."',
 			'".$_POST['dt_field_1']."',

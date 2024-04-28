@@ -81,7 +81,7 @@ $( document ).ready(function() {
 		delay:		1000,
 		minLength:	2,
 		select:		function(event, ui) {
-			$( "#local_id" ).val(ui.item.id);
+			$( "#local_value" ).val(ui.item.value);
 			$(this).val(ui.item.value);
 		},
 		change: function(event, ui){

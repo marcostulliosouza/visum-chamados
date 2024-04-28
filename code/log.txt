@@ -2,6 +2,7 @@
 		INSERT INTO chamados
 		(
 			cha_tipo,
+			cha_local,
 			cha_cliente,
 			cha_produto,
 			cha_DT,
@@ -13,16 +14,16 @@
 		)
 		VALUES
 		(
-			3,
-			'323',
-			'12731',
-			'_1',
-			UPPER('BOM DIA!
-JIGA ESTÁ DESLIGADA, SEM POSSIBILIDADE DE GRAVAR OS CI'S'),
+			2,
+			POS-001,
+			'328',
+			'12767',
+			'111111',
+			UPPER('testeee'),
 			1,
 			NOW(),
-			'ariel.luza',
-			'0'
+			'marcos.souza',
+			'1'
 		)
 	
 

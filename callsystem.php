@@ -83,7 +83,7 @@
 					<div class="callsystem_form_fields">
 						<div class="div_label">Local: </div>
 						<div class="div_form_field">
-							<input type="hidden" id="local_id" name="local_id">
+							<input type="hidden" id="local_value" name="local_value">
 							<input name="local_field" id="local_field"><span style="color: red;">*</span>
 						</div>
 					</div>
