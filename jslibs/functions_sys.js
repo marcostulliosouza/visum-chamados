@@ -358,7 +358,7 @@ $( document ).ready(function() {
 					"			<div class='my_call_cell' id='label_close_call' name='label_close_call'>Fechamento:</div>"					+
 					"			<div class='my_call_cell'>"+value.cha_termino+"</div>"														+
 					"			<div class='my_call_cell' id='label_local_call' name='label_local_call'>Local:</div>"						+
-					"			<div class='my_call_cell'>"+(value.cha_local_nome ? value.cha_local_nome : 'Local não especificado')+"</div>"														+
+					"			<div class='my_call_cell'>"+(value.cha_local ? value.cha_local : 'Local não especificado')+"</div>"														+
 					"		</div>"																											+
 					"	</div>"																												+
 					"	<div class='my_call_table'>"																						+

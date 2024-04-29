@@ -48,7 +48,7 @@
 			chamados.cha_operador,
 			IF(colaboradores.col_nome IS NULL, ' ', colaboradores.col_nome) AS col_nome, 
 			IF(acoes_chamados.ach_descricao IS NULL, ' ', acoes_chamados.ach_descricao) AS ach_descricao,
-			local_chamado.loc_nome AS cha_local_nome
+			chamados.cha_local
 		FROM 
 			chamados 
 			LEFT JOIN tipos_chamado ON chamados.cha_tipo = tipos_chamado.tch_id 
