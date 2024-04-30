@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="css/extra-style.css">
     <script src="external/jquery/jquery.js"></script>
     <script src="jslibs/js.cookie.js"></script>
-    <script src="jqueryUI/jquery-ui.min.js"></script>    
+    <script src="jqueryUI/jquery-ui.min.js"></script>   
+    
+     <!-- Adicionando cabeçalhos de cache para evitar o armazenamento em cache da página de login -->
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="Fri, 14 Jun 1991 05:00:00 GMT">
 </head>
 <body>
     <div class="logo-hi-mix">

@@ -24,13 +24,26 @@ $( document ).ready(function() {
 	$( "#tabs" ).on( "tabsbeforeactivate", function( e, ui ) {
 		var tab_clicked = new String(ui.newPanel.selector);
 		
-		if(tab_clicked == "#sair")
-		{	
+		if(tab_clicked == "#sair") {
 			e.preventDefault();
-			window.location.href = "index.php";
+			// Exibe uma mensagem de confirmação antes de fazer logout
+			if (confirm("Tem certeza de que deseja sair?")) {
+				logout(); // Chama a função logout se o usuário confirmar
+			}
 		}
+
 	});
 	
+	// Função para fazer logout
+	function logout() {
+		// Limpa os cookies de sessão
+		document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+		document.cookie = 'time=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+		
+		// Redireciona para a página de login
+		window.location.href = 'index.php';
+	}
+
 	//jQuery form 
 	
 	//call type
@@ -191,14 +204,16 @@ $( document ).ready(function() {
 
 
 	
-	$( "#call_form" ).validate({
+	$("#call_form").validate({
 		errorPlacement: function(error, element) {
 			alert(error[0].innerHTML);
 		},
-		/*
 		messages: {
 			call_type: {
 				required: "Selecione o tipo de chamado."
+			},
+			local_field: {
+				required: "Selecione o local a ser atendido."
 			},
 			client_field: {
 				required: "Informe o Cliente."
@@ -207,65 +222,82 @@ $( document ).ready(function() {
 				required: "Informe o Produto."
 			},
 			dt_field_1: {
-				required: "Insira o código completo do Dispositivo de Teste.",
+				required: "Insira o código completo do Dispositivo de Teste."
 			},
 			call_description: {
 				required: "Insira a descrição do chamado."
 			}
 		},
 		
-		*/
-		submitHandler: function( form ) {
-			var call_type = $( "#call_type" ).val();
-			var client = $( "#client_id" ).val();
-			var product = $( "#product_id" ).val();
-			var call_description = $( "#call_description" ).val().length;
+		submitHandler: function(form) {
+			var call_type = $("#call_type").val();
+			var local_value = $("#local_value").val();
+			var client = $("#client_id").val();
+			var product = $("#product_id").val();
+			var dt_field_1 = $("#dt_field_1").val();
+			var call_description = $("#call_description").val();
 			
-			if( !call_type ) {
+				
+			if (!call_type) {
 				alert("Selecione um tipo de chamado!");
-				return(false);
+				return false;
 			}
-			if( !client ) {
+			if (!local_value) {
+				alert("Selecione o local que será atendido o chamado!");
+				return false;
+			}
+			if (!client) {
 				alert("Informe o Cliente!");
-				return(false);
+				return false;
 			}
-			if ( !product ){
+			if (!product) {
 				alert("Informe o Produto!");
-				return(false);
+				return false;
 			}
-			if( !call_description ){
+			// Verifica se o campo dt_field_1 está desabilitado
+			if (!$("#dt_field_1").is(":disabled")) {
+				// Validação obrigatória do campo dt_field_1 apenas se não estiver desabilitado
+				if (!dt_field_1) {
+					alert("Informe o Código da Jiga (DT)");
+					return false;
+				}
+			}
+			if (!call_description) {
 				alert("Insira a descrição do chamado!");
-				return(false);
+				return false;
 			}
-			
 			
 			var dados = $(form).serialize();
 			
-			$.ajax ({
-				type: 		"POST",
-				url: 		"code/call_form_process.php",
-				data: 		dados,
-				dataType:	"json",
-				contentType: "application/x-www-form-urlencoded;charset=ISO-8859-15",	
-				success:	function( data ){
-					if(data.success == true){
+			$.ajax({
+				type: "POST",
+				url: "code/call_form_process.php",
+				data: dados,
+				dataType: "json",
+				contentType: "application/x-www-form-urlencoded;charset=ISO-8859-15",
+				success: function(data) {
+					if (data.success) {
 						alert("Chamado criado com sucesso!");
 						$("#tabs").tabs("option", "active", id2Index("#tabs", "#meus_chamados"));
-						//window.location.href = "";
 					} else {
-						if(data.error == 1) {
+						if (data.error == 1) {
 							alert("Já existe um chamado aberto para o cliente e produto selecionados.");
-						} else if(data.error == 2) {
+						} else if (data.error == 2) {
 							alert("Falha na criação do chamado. Entre em contato com a Engenharia de Testes e reporte o problema.");
 						}
 					}
+				},
+				error: function() {
+					alert("Erro ao processar o formulário. Por favor, tente novamente mais tarde.");
 				}
-			});			
+			});
 			
 			return false;
 		}
-		
 	});
+	
+	
+	
 	
 	//Jquery for the tab "Meus Chamados"
 	$( "#btn_backward" ).button();

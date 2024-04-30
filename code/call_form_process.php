@@ -1,7 +1,7 @@
 <?php 
-
 	include("connector.php");
 	
+	$dt_field_1 = isset($_POST['dt_field_1']) ? $_POST['dt_field_1'] : '00000'; // Define o valor padrão para dt_field_1 como '00000' se estiver desabilitado
 	
 	$query = "
 		SELECT 
@@ -17,40 +17,7 @@
 	
 	$result = $conn->query($query);
 	
-	$insidePlan = 0;
-	
-	if($result->num_rows > 0){
-		$insidePlan = 1;
-	}
-	
-	
-	
-	#firstly is verified if there is any call created for this product and client
-	
-#	$query = "
-#		SELECT 
-#			cha_id
-#		FROM
-#			chamados
-#		WHERE
-#			DATE(NOW()) = DATE(cha_data_hora_abertura)
-#			AND cha_cliente = '".$_POST['client_id']."'
-#			AND cha_produto = '".$_POST['product_id']."'
-#			AND cha_status != 3
-#	";
-#	
-#	$result = $conn->query($query);
-#
-#	if($result->num_rows != 0 && $insidePlan)
-#	{
-#		$result_insert['success'] = false;
-#		$result_insert['error'] = 1;
-#		$conn->close();
-#		echo json_encode($result_insert);
-#		exit();
-#	}
-	
-	
+	$insidePlan = $result->num_rows > 0 ? 1 : 0;
 	
 	$query = "
 		INSERT INTO chamados
@@ -72,7 +39,7 @@
 			'".$_POST['local_value']."',
 			'".$_POST['client_id']."',
 			'".$_POST['product_id']."',
-			'".$_POST['dt_field_1']."',
+			'".$dt_field_1."',
 			UPPER('".utf8_decode($_POST['call_description'])."'),
 			1,
 			NOW(),
@@ -84,7 +51,7 @@
 	if($conn->query($query) === TRUE) 
 	{
 		$result_insert['success'] = true;
-		$result_instert['error'] = 0;
+		$result_insert['error'] = 0;
 		$conn->close();
 		echo json_encode($result_insert);
 		exit();
@@ -101,6 +68,4 @@
 		echo json_encode($result_insert);
 		exit();
 	}
-	
-
 ?>

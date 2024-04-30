@@ -14,16 +14,16 @@
 		)
 		VALUES
 		(
-			2,
-			POS-001,
+			1,
+			'POS-010',
 			'328',
-			'12767',
-			'111111',
-			UPPER('testeee'),
+			'12352',
+			'00000', // Utiliza o valor definido para dt_field_1
+			UPPER('11'),
 			1,
 			NOW(),
 			'marcos.souza',
-			'1'
+			'0'
 		)
 	
 

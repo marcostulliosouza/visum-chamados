@@ -1,31 +1,32 @@
 <?php
-	if(!isset($_COOKIE['user']) || !isset($_COOKIE['time']))
-	{
-		echo "
-			<script>
-				window.location.href = 'index.php';
-			</script>
-		";
-	
-		exit();
-	}
-	else
-	{
-		$actual_time = time();
-		$time_diff = $actual_time - $_COOKIE['time'];
-		
-	
-		//if the user is logged more than 600 seconds
-		if($time_diff > 6000)
-		{
-			echo "
-				<script>
-					window.location.href = 'index.php';
-				</script>
-			";
-			exit();			
-		}
-	}
+    // Verifica se o cookie 'user' está definido para determinar se o usuário está logado
+    if(!isset($_COOKIE['user']) || !isset($_COOKIE['time'])) {
+        // Se não estiver logado, redireciona para a página de login
+        echo "
+            <script>
+                window.location.href = 'index.php';
+            </script>
+        ";
+        exit();
+    } else {
+        $actual_time = time();
+        $time_diff = $actual_time - $_COOKIE['time'];
+        
+        // Se o usuário estiver logado por mais de 6000 segundos (10 minutos), faz logout
+        if($time_diff > 6000) {
+            // Limpa os cookies de sessão
+            setcookie('user', '', time() - 3600, '/');
+            setcookie('time', '', time() - 3600, '/');
+            
+            // Redireciona para a página de login
+            echo "
+                <script>
+                    window.location.href = 'index.php';
+                </script>
+            ";
+            exit();
+        }
+    }
 ?>
 
 <html lang="pt-br">
